@@ -12,10 +12,6 @@ public class Produit {
      * Double faisant référence au prix du produit.
      */
     private double prix;
-    /**
-     * Constante de TVA à 20%.
-     */
-    static final double TVA = 0.20;
 
     /**
      * Constructeur de l'objet Produit.
@@ -41,7 +37,6 @@ public class Produit {
      * @return la reference si le prix est positif, null sinon.
      */
     public final String getReference() {
-        String resultat = reference;
         if (prix > 0) {
             return reference;
         }
@@ -53,9 +48,14 @@ public class Produit {
      */
     @Override
     public boolean equals(final Object o) {
-        return Objects.equals(reference, ((Produit) o).reference);
+        if (this == o) {
+            return true;
+        }
+        if (o instanceof Produit produit) {
+            return Objects.equals(reference, produit.reference);
+        }
+        return false;
     }
-
     /**
      * Permet la localisation en mémoire de l'objet.
      */
